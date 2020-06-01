@@ -25,7 +25,7 @@ SECRET_KEY = 'xkqayilp8_)^zzk_1@*gj=t$*b8wds2eyz1ek6v#9ft6o2ew#)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'https://indrico-analisa-sentimen.herokuapp.com/']
 
 
 # Application definition
