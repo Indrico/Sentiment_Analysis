@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/mystyle.css' %}" type="text/css">
+    <title>Twitter Sentiment Analysis</title>
+    <script type="application/javascript">
+        function inputChange(element) {
+            // alert(element);
+            document.getElementById("keyword").value = element;
+        }
+        function loading(){
+            document.getElementById("btn-submit").className += " is-loading"
+        }
+    </script>
+    <style>
+        .hand-cursor{
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="block">
+        <nav class="navbar is-info">
+            <div class="navbar-brand">
+                <a class="navbar-item">
+                    <img src="{% static 'svg/iconmonstr-twitter-1.svg' %}" alt="Twitter Logo">
+                </a>
+            </div>
+            <div class="navbar-start">
+                <div class="navbar-item"><a class="title is-5 has-text-white">Sentiment Analisis</a></div>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        <!-- Attached -->
+        <form action="{% url 'twitter:hasil' %}" method="post" onsubmit="loading()">
+            {% csrf_token %}
+            <div class="block" style="margin-top: 20%;">
+                <div class="field has-addons">
+                    <p class="control">
+                        <span class="select">
+                            <select name="tweet" oninvalid="this.setCustomValidity('Masukan Jumlah Tweet')"
+                                oninput="setCustomValidity('')" required>
+                                <option value="">Jumlah Tweet</option>
+                                <option value="10">10 Tweet</option>
+                                <option value="25">25 Tweet</option>
+                                <option value="50">50 Tweet</option>
+                                <option value="100">100 Tweet</option>
+                            </select>
+                        </span>
+                    </p>
+                    <p class="control is-expanded">
+                        <input type="text" name="keyword" class="input" id="keyword" placeholder="Masukan Kata Kunci..." required>
+                    </p>
+                    <p class="control">
+                        <button type="submit" class="button is-info" id="btn-submit">Search</button>
+                        <!-- Don't forget change is-info to is-loading if possible -->
+                    </p>
+                </div>
+            </div>
+            <div class="block">
+                Trending Topic Indonesia saat ini
+                {% for trend in Trend_Name %}
+                <div class="tag is-success is-medium hand-cursor" style="margin: 10px 15px 0px 0px;" id="{{trend}}" onclick="inputChange(this.id);">{{trend}}</div>
+                {% endfor%}
+            </div>
+        </form>
+    </div>
+
+    <footer class="footer" style="position: fixed; bottom: 0px; width: 100%;">
+        <div class="content has-text-centered">
+            <p class="has-text-white">
+                20161000005 - Indrico Jowensen Jasumin
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>

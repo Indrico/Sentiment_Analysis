@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    {% load extra %}
+    <link rel="stylesheet" href="{% static 'css/mystyle.css' %}" type="text/css">
+    <title>Hasil Sentiment Analysis</title>
+    <script type="application/javascript">
+        function loading(){
+            document.getElementById("btn-submit").className += " is-loading"
+        }
+    </script>
+</head>
+
+<body>
+    <div class="block">
+        <nav class="navbar is-info">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="/">
+                    <img src="{% static 'svg/iconmonstr-twitter-1.svg' %}" alt="Twitter Logo">
+                </a>
+            </div>
+            <div class="navbar-start">
+                <div class="navbar-item"><a class="title is-5 has-text-white" href="/">Sentiment Analisis</a></div>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        <!-- Attached -->
+        <form action="{% url 'twitter:hasil' %}" method="post" onsubmit="loading()">
+            {% csrf_token %}
+            <div class="block" style="margin-top: 20%;">
+                <div class="field has-addons">
+                    <p class="control">
+                        <span class="select">
+                            <select name="tweet" oninvalid="this.setCustomValidity('Masukan Jumlah Tweet')"
+                                oninput="setCustomValidity('')" required>
+                                <option value="">Jumlah Tweet</option>
+                                <option value="10" {% if tweet == 10 %} selected {% endif %}>10 Tweet</option>
+                                <option value="25" {% if tweet == 25 %} selected {% endif %}>25 Tweet</option>
+                                <option value="50" {% if tweet == 50 %} selected {% endif %}>50 Tweet</option>
+                                <option value="100" {% if tweet == 100 %} selected {% endif %}>100 Tweet</option>
+                            </select>
+                        </span>
+                    </p>
+                    <p class="control is-expanded">
+                        <input type="text" name="keyword" class="input" id="keyword" placeholder="Masukan Kata Kunci..."
+                            value="{{keyword}}" required>
+                    </p>
+                    <p class="control">
+                        <button type="submit" class="button is-info" id="btn-submit">Search</button>
+                        <!-- Don't forget change is-info to is-loading if possible -->
+                    </p>
+                </div>
+            </div>
+        </form>
+        <div class="block" style="margin-top: 5%; margin-bottom: 10%;">
+            {% for tweet in hasil %}
+            <article class="media">
+                <figure class="media-left">
+                    <p class="image is-64x64">
+                        <img src={{tweet|get_obj_attr:"picture_url"}}>
+                    </p>
+                </figure>
+                <div class="media-content">
+                    <div class="content">
+                        <p>
+                            <strong>{{tweet|get_obj_attr:"username"}}</strong> <small>{{tweet|get_obj_attr:"created_at"}}</small>
+                            <br>
+                            {{tweet|get_obj_attr:"text"}}
+                            <br>
+                            <a href="https://www.twitter.com/{{tweet|get_obj_attr:'username'}}/status/{{tweet|get_obj_attr:'id'}}" target="_blank">Sumber Tweet</a>
+                        </p>
+                    </div>
+                </div>
+                <figure class="media-right">
+                    <p class="image is-64x64">
+                        <img src="{% static 'svg/mood-happy-outline.svg' %}" alt="Sentiment">
+                    </p>
+                </figure>
+                
+            </article>
+            </a>
+            {% endfor%}
+        </div>
+    </div>
+
+    <footer class="footer" style="position: fixed; bottom: 0px; width: 100%;">
+        <div class="content has-text-centered">
+            <p class="has-text-white">
+                20161000005 - Indrico Jowensen Jasumin
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>
