@@ -9,26 +9,32 @@
     <link rel="stylesheet" href="{% static 'css/mystyle.css' %}" type="text/css">
     <title>Hasil Sentiment Analysis</title>
     <script type="application/javascript">
-        function loading(){
+        function loading() {
             document.getElementById("btn-submit").className += " is-loading"
         }
     </script>
+    <style>
+        .filter-green {
+            filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+        }
+        .filter-red {
+            filter: invert(26%) sepia(84%) saturate(7196%) hue-rotate(8deg) brightness(108%) contrast(102%);
+        }
+    </style>
 </head>
 
 <body>
     <div class="block">
         <nav class="navbar is-info">
             <div class="navbar-brand">
-                <a class="navbar-item" href="/">
+                <a class="navbar-item">
                     <img src="{% static 'svg/iconmonstr-twitter-1.svg' %}" alt="Twitter Logo">
                 </a>
-            </div>
-            <div class="navbar-start">
-                <div class="navbar-item"><a class="title is-5 has-text-white" href="/">Sentiment Analisis</a></div>
+                <div class="navbar-item"><a class="title is-5 has-text-white">Sentiment Analisis</a></div>
             </div>
         </nav>
     </div>
-    <div class="container">
+    <div class="container" style="padding: 20px;">
         <!-- Attached -->
         <form action="{% url 'twitter:hasil' %}" method="post" onsubmit="loading()">
             {% csrf_token %}
@@ -57,7 +63,7 @@
                 </div>
             </div>
         </form>
-        <div class="block" style="margin-top: 5%; margin-bottom: 10%;">
+        <div class="block" style="margin-top: 5%; margin-bottom: 50px;">
             {% for tweet in hasil %}
             <article class="media">
                 <figure class="media-left">
@@ -68,20 +74,23 @@
                 <div class="media-content">
                     <div class="content">
                         <p>
-                            <strong>{{tweet|get_obj_attr:"username"}}</strong> <small>{{tweet|get_obj_attr:"created_at"}}</small>
+                            <strong>{{tweet|get_obj_attr:"username"}}</strong>
+                            <small>{{tweet|get_obj_attr:"created_at"}}</small>
                             <br>
                             {{tweet|get_obj_attr:"text"}}
                             <br>
-                            <a href="https://www.twitter.com/{{tweet|get_obj_attr:'username'}}/status/{{tweet|get_obj_attr:'id'}}" target="_blank">Sumber Tweet</a>
+                            <a href="https://www.twitter.com/{{tweet|get_obj_attr:'username'}}/status/{{tweet|get_obj_attr:'id'}}"
+                                target="_blank">Sumber Tweet</a>
                         </p>
                     </div>
                 </div>
                 <figure class="media-right">
                     <p class="image is-64x64">
-                        <img src="{% static 'svg/mood-happy-outline.svg' %}" alt="Sentiment">
+                        <img src={% if tweet|get_obj_attr:"sentimen" == "pos" %} "{% static 'svg/mood-happy-outline.svg' %}" class="filter-green"
+                            {% else %} "{% static 'svg/mood-sad-outline.svg' %}" class="filter-red" {% endif %} alt="Sentiment">
                     </p>
                 </figure>
-                
+
             </article>
             </a>
             {% endfor%}

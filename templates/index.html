@@ -30,13 +30,11 @@
                 <a class="navbar-item">
                     <img src="{% static 'svg/iconmonstr-twitter-1.svg' %}" alt="Twitter Logo">
                 </a>
-            </div>
-            <div class="navbar-start">
                 <div class="navbar-item"><a class="title is-5 has-text-white">Sentiment Analisis</a></div>
             </div>
         </nav>
     </div>
-    <div class="container">
+    <div class="container" style="padding: 20px;">
         <!-- Attached -->
         <form action="{% url 'twitter:hasil' %}" method="post" onsubmit="loading()">
             {% csrf_token %}
@@ -63,7 +61,7 @@
                     </p>
                 </div>
             </div>
-            <div class="block">
+            <div class="block" style="margin-bottom: 50px;">
                 Trending Topic Indonesia saat ini
                 {% for trend in Trend_Name %}
                 <div class="tag is-success is-medium hand-cursor" style="margin: 10px 15px 0px 0px;" id="{{trend}}" onclick="inputChange(this.id);">{{trend}}</div>

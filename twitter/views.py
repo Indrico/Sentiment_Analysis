@@ -1,6 +1,11 @@
 from django.shortcuts import render, HttpResponse
 import tweepy
+import re
 from datetime import datetime, timezone
+from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn import svm
 
 def tweepyAuth():
     auth = tweepy.OAuthHandler("sGVoIBh4jNQXOKyeQfoIhFf8x", "VF4DPLQ4ltkUnisGEYTGZSyTcnmYOqSRWnbDcqEKigKUWFGMV3")
@@ -8,7 +13,50 @@ def tweepyAuth():
     api = tweepy.API(auth)
     return api
 
-def parseTweet(lst):
+def removeURL(text):
+    no_url = re.sub(r'http\S+', '', text)
+    return no_url
+
+def noise_removal(text):
+    no_noise = re.sub("(\\W|\\d)"," ",text)
+    return no_noise
+
+def remove_stopword(text):
+    factory = StopWordRemoverFactory()
+    stopword = factory.create_stop_word_remover()
+    stop = stopword.remove(text)
+    return stop
+
+def remove_whitespaces(text):
+    no_whitespaces = re.sub(r'\s+', ' ', text)
+    return no_whitespaces
+
+def cleaningText(lst):
+    new_list = []
+    for item in lst:
+        temp = {}
+        temp["text"] = item['text']
+        temp["text"] = remove_whitespaces(remove_stopword(noise_removal(removeURL(item['text'].lower()))))
+        new_list.append(temp)  
+    return new_list
+
+def listToString(s):  
+    # initialize an empty string 
+    str1 = " " 
+    # return string   
+    return (str1.join(s)) 
+
+def getSentiment(lst):
+    # Read Train data
+    trainData = pd.read_csv('data_training.csv')
+    # Create feature vectors
+    vectorizer = TfidfVectorizer()
+    train_vectors = vectorizer.fit_transform(trainData["Text"])
+    
+    #Perform classification with SVM, kernel = linear
+    classifier_linear = svm.SVC(kernel='linear')
+    classifier_linear.fit(train_vectors, trainData['Sentimen']) # Training
+    
     new_list = []
     for item in lst:
         temp = {}
@@ -18,7 +66,11 @@ def parseTweet(lst):
         temp["created_at"] = datetime.strptime(item["created_at"], '%a %b %d %H:%M:%S %z %Y').replace(tzinfo=timezone.utc).astimezone(tz=None).strftime('%d-%m-%Y %H:%M:%S')
         temp["username"] = item['user']["screen_name"]
         temp["picture_url"] = item['user']["profile_image_url"]
-        new_list.append(temp)  
+        clean_tweet = remove_whitespaces(remove_stopword(noise_removal(removeURL(item['text'].lower())))) #Cleaned Text
+        tweet_vector = vectorizer.transform([clean_tweet]) # Vectorizing
+        sentiment = classifier_linear.predict(tweet_vector)
+        temp["sentimen"] = listToString(sentiment)
+        new_list.append(temp)
     return new_list
 
 def results(request):
@@ -27,6 +79,6 @@ def results(request):
 
     api = tweepyAuth() #Authentifikasi terlebih dahulu
     result = [status._json for status in tweepy.Cursor(api.search, q=keyword + '-filter:retweets', lang="id").items(tweet)] #Bentuk hasilnya list of dictionary
-    hasil = parseTweet(result) #gunakan element yang diperlukan saja
+    hasil = getSentiment(result) #gunakan element yang diperlukan saja
 
     return render(request, 'hasil.html', {'tweet' : tweet, 'keyword' : keyword, 'hasil': hasil})
