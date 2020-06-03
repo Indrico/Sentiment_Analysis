@@ -17,7 +17,6 @@ Sastrawi==1.0.1
 scikit-learn==0.23.1
 scipy==1.4.1
 selenium==3.141.0
-six==1.13.0
 sklearn==0.0
 searchtweets==1.7.5
 six==1.15.0
