@@ -12,13 +12,21 @@
             // alert(element);
             document.getElementById("keyword").value = element;
         }
-        function loading(){
+        function loading() {
             document.getElementById("btn-submit").className += " is-loading"
         }
     </script>
     <style>
-        .hand-cursor{
+        .hand-cursor {
             cursor: pointer;
+        }
+        .search-bar{
+            margin-top: 10%;
+        }
+        @media only screen and (max-width: 600px) {
+            .search-bar{
+                margin-top: 20%;
+            }
         }
     </style>
 </head>
@@ -38,7 +46,7 @@
         <!-- Attached -->
         <form action="{% url 'twitter:hasil' %}" method="post" onsubmit="loading()">
             {% csrf_token %}
-            <div class="block" style="margin-top: 20%;">
+            <div class="block search-bar">
                 <div class="field has-addons">
                     <p class="control">
                         <span class="select">
@@ -53,7 +61,8 @@
                         </span>
                     </p>
                     <p class="control is-expanded">
-                        <input type="text" name="keyword" class="input" id="keyword" placeholder="Masukan Kata Kunci..." required>
+                        <input type="text" name="keyword" class="input" id="keyword" placeholder="Masukan Kata Kunci..."
+                            required>
                     </p>
                     <p class="control">
                         <button type="submit" class="button is-info" id="btn-submit">Search</button>
@@ -61,10 +70,11 @@
                     </p>
                 </div>
             </div>
-            <div class="block" style="margin-bottom: 50px;">
+            <div class="block mobile-scroll" style="margin-bottom: 50px;">
                 Trending Topic Indonesia saat ini
                 {% for trend in Trend_Name %}
-                <div class="tag is-success is-medium hand-cursor" style="margin: 10px 15px 0px 0px;" id="{{trend}}" onclick="inputChange(this.id);">{{trend}}</div>
+                <div class="tag is-success is-medium hand-cursor" style="margin: 10px 15px 0px 0px;" id="{{trend}}"
+                    onclick="inputChange(this.id);">{{trend}}</div>
                 {% endfor%}
             </div>
         </form>

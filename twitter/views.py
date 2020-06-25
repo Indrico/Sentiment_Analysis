@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse
 import tweepy
 import re
+import pytz
 from datetime import datetime, timezone
 from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 import pandas as pd
@@ -56,14 +57,17 @@ def getSentiment(lst):
     #Perform classification with SVM, kernel = linear
     classifier_linear = svm.SVC(kernel='linear')
     classifier_linear.fit(train_vectors, trainData['Sentimen']) # Training
-    
+
+    #Use Indonesia Timezone (GMT+7)
+    indonesia = pytz.timezone('Asia/Jakarta')
+
     new_list = []
     for item in lst:
         temp = {}
         temp["text"] = item['text']
         temp["id"] = item['id']
         # Mengubah format penanggal Twitter Misal "Thu Dec 26 16:33:13 +0000 2019" menjadi penanggalan Indonesia dengan local timezone
-        temp["created_at"] = datetime.strptime(item["created_at"], '%a %b %d %H:%M:%S %z %Y').replace(tzinfo=timezone.utc).astimezone(tz=None).strftime('%d-%m-%Y %H:%M:%S')
+        temp["created_at"] = datetime.strptime(item["created_at"], '%a %b %d %H:%M:%S %z %Y').replace(tzinfo=timezone.utc).astimezone(indonesia).strftime('%d-%m-%Y %H:%M:%S')
         temp["username"] = item['user']["screen_name"]
         temp["picture_url"] = item['user']["profile_image_url"]
         clean_tweet = remove_whitespaces(remove_stopword(noise_removal(removeURL(item['text'].lower())))) #Cleaned Text
