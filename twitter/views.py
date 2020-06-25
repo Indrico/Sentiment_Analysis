@@ -49,13 +49,13 @@ def listToString(s):
 
 def getSentiment(lst):
     # Read Train data
-    trainData = pd.read_csv('data_training.csv')
+    trainData = pd.read_csv('data_training_2.csv')
     # Create feature vectors
     vectorizer = TfidfVectorizer()
     train_vectors = vectorizer.fit_transform(trainData["Text"])
     
     #Perform classification with SVM, kernel = linear
-    classifier_linear = svm.SVC(kernel='linear')
+    classifier_linear = svm.NuSVR(kernel='linear')
     classifier_linear.fit(train_vectors, trainData['Sentimen']) # Training
 
     #Use Indonesia Timezone (GMT+7)
@@ -73,7 +73,12 @@ def getSentiment(lst):
         clean_tweet = remove_whitespaces(remove_stopword(noise_removal(removeURL(item['text'].lower())))) #Cleaned Text
         tweet_vector = vectorizer.transform([clean_tweet]) # Vectorizing
         sentiment = classifier_linear.predict(tweet_vector)
-        temp["sentimen"] = listToString(sentiment)
+        if (sentiment >= 0.5):
+            temp["sentimen"] = "positif"
+        elif (sentiment <= 0.5 and sentiment >= -0.5):
+            temp["sentimen"] = "netral"
+        else:
+            temp["sentimen"] = "negatif"
         new_list.append(temp)
     return new_list
 

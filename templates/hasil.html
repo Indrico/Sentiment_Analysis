@@ -86,7 +86,8 @@
                 </div>
                 <figure class="media-right">
                     <p class="image is-64x64">
-                        <img src={% if tweet|get_obj_attr:"sentimen" == "pos" %} "{% static 'svg/mood-happy-outline.svg' %}" class="filter-green"
+                        <img src={% if tweet|get_obj_attr:"sentimen" == "positif" %} "{% static 'svg/mood-happy-outline.svg' %}" class="filter-green"
+                            {% elif tweet|get_obj_attr:"sentimen" == "netral" %} "{% static 'svg/mood-neutral-outline.svg' %}"
                             {% else %} "{% static 'svg/mood-sad-outline.svg' %}" class="filter-red" {% endif %} alt="Sentiment">
                     </p>
                 </figure>
