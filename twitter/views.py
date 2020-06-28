@@ -7,6 +7,7 @@ from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFacto
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn import svm
+import pickle
 
 def tweepyAuth():
     auth = tweepy.OAuthHandler("sGVoIBh4jNQXOKyeQfoIhFf8x", "VF4DPLQ4ltkUnisGEYTGZSyTcnmYOqSRWnbDcqEKigKUWFGMV3")
@@ -48,16 +49,9 @@ def listToString(s):
     return (str1.join(s)) 
 
 def getSentiment(lst):
-    # Read Train data
-    trainData = pd.read_csv('data_training_2.csv')
-    # Create feature vectors
-    vectorizer = TfidfVectorizer()
-    train_vectors = vectorizer.fit_transform(trainData["Text"])
+    vectorizer = pickle.load(open('vectorizer.sav', 'rb'))
+    classifier_linear = pickle.load(open('classifier.sav', 'rb'))
     
-    #Perform classification with SVM, kernel = linear
-    classifier_linear = svm.NuSVR(kernel='linear')
-    classifier_linear.fit(train_vectors, trainData['Sentimen']) # Training
-
     #Use Indonesia Timezone (GMT+7)
     indonesia = pytz.timezone('Asia/Jakarta')
 
@@ -71,6 +65,7 @@ def getSentiment(lst):
         temp["username"] = item['user']["screen_name"]
         temp["picture_url"] = item['user']["profile_image_url"]
         clean_tweet = remove_whitespaces(remove_stopword(noise_removal(removeURL(item['text'].lower())))) #Cleaned Text
+        temp["clean_tweet"] = clean_tweet
         tweet_vector = vectorizer.transform([clean_tweet]) # Vectorizing
         sentiment = classifier_linear.predict(tweet_vector)
         if (sentiment >= 0.5):
