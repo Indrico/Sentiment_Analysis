@@ -17,6 +17,7 @@
         .filter-green {
             filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
         }
+
         .filter-red {
             filter: invert(26%) sepia(84%) saturate(7196%) hue-rotate(8deg) brightness(108%) contrast(102%);
         }
@@ -35,67 +36,91 @@
         </nav>
     </div>
     <div class="container" style="padding: 20px;">
-        <!-- Attached -->
-        <form action="{% url 'twitter:hasil' %}" method="post" onsubmit="loading()">
-            {% csrf_token %}
-            <div class="block" style="margin-top: 20%;">
-                <div class="field has-addons">
-                    <p class="control">
-                        <span class="select">
-                            <select name="tweet" oninvalid="this.setCustomValidity('Masukan Jumlah Tweet')"
-                                oninput="setCustomValidity('')" required>
-                                <option value="">Jumlah Tweet</option>
-                                <option value="10" {% if tweet == 10 %} selected {% endif %}>10 Tweet</option>
-                                <option value="25" {% if tweet == 25 %} selected {% endif %}>25 Tweet</option>
-                                <option value="50" {% if tweet == 50 %} selected {% endif %}>50 Tweet</option>
-                                <option value="100" {% if tweet == 100 %} selected {% endif %}>100 Tweet</option>
-                            </select>
-                        </span>
-                    </p>
-                    <p class="control is-expanded">
-                        <input type="text" name="keyword" class="input" id="keyword" placeholder="Masukan Kata Kunci..."
-                            value="{{keyword}}" required>
-                    </p>
-                    <p class="control">
-                        <button type="submit" class="button is-info" id="btn-submit">Search</button>
-                        <!-- Don't forget change is-info to is-loading if possible -->
+        <div class="block">
+            <div class="columns">
+                <div class="column">
+                    <div class="box box notification is-primary">
+                        <div class="heading">Positif</div>
+                        <div class="title">{{positif}} Tweet ({{PersenPositif}}%)</div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="box box notification">
+                        <div class="heading">Netral</div>
+                        <div class="title">{{netral}} Tweet ({{PersenNetral}}%)</div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="box box notification is-danger">
+                        <div class="heading">Negatif</div>
+                        <div class="title">{{negatif}} Tweet ({{PersenNegatif}}%)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- Attached -->
+    <form action="{% url 'twitter:hasil' %}" method="post" onsubmit="loading()">
+        {% csrf_token %}
+        <div class="block" style="margin-top: 5%;">
+            <div class="field has-addons">
+                <p class="control">
+                    <span class="select">
+                        <select name="tweet" oninvalid="this.setCustomValidity('Masukan Jumlah Tweet')"
+                            oninput="setCustomValidity('')" required>
+                            <option value="">Jumlah Tweet</option>
+                            <option value="10" {% if tweet == 10 %} selected {% endif %}>10 Tweet</option>
+                            <option value="25" {% if tweet == 25 %} selected {% endif %}>25 Tweet</option>
+                            <option value="50" {% if tweet == 50 %} selected {% endif %}>50 Tweet</option>
+                            <option value="100" {% if tweet == 100 %} selected {% endif %}>100 Tweet</option>
+                        </select>
+                    </span>
+                </p>
+                <p class="control is-expanded">
+                    <input type="text" name="keyword" class="input" id="keyword" placeholder="Masukan Kata Kunci..."
+                        value="{{keyword}}" required>
+                </p>
+                <p class="control">
+                    <button type="submit" class="button is-info" id="btn-submit">Search</button>
+                    <!-- Don't forget change is-info to is-loading if possible -->
+                </p>
+            </div>
+        </div>
+    </form>
+    <div class="block" style="margin-top: 5%; margin-bottom: 50px;">
+        {% for tweet in hasil %}
+        <article class="media">
+            <figure class="media-left">
+                <p class="image is-64x64">
+                    <img src={{tweet|get_obj_attr:"picture_url"}}>
+                </p>
+            </figure>
+            <div class="media-content">
+                <div class="content">
+                    <p>
+                        <strong>{{tweet|get_obj_attr:"username"}}</strong>
+                        <small>{{tweet|get_obj_attr:"created_at"}}</small>
+                        <br>
+                        {{tweet|get_obj_attr:"text"}}
+                        <br>
+                        <a href="https://www.twitter.com/{{tweet|get_obj_attr:'username'}}/status/{{tweet|get_obj_attr:'id'}}"
+                            target="_blank">Sumber Tweet</a>
                     </p>
                 </div>
             </div>
-        </form>
-        <div class="block" style="margin-top: 5%; margin-bottom: 50px;">
-            {% for tweet in hasil %}
-            <article class="media">
-                <figure class="media-left">
-                    <p class="image is-64x64">
-                        <img src={{tweet|get_obj_attr:"picture_url"}}>
-                    </p>
-                </figure>
-                <div class="media-content">
-                    <div class="content">
-                        <p>
-                            <strong>{{tweet|get_obj_attr:"username"}}</strong>
-                            <small>{{tweet|get_obj_attr:"created_at"}}</small>
-                            <br>
-                            {{tweet|get_obj_attr:"text"}}
-                            <br>
-                            <a href="https://www.twitter.com/{{tweet|get_obj_attr:'username'}}/status/{{tweet|get_obj_attr:'id'}}"
-                                target="_blank">Sumber Tweet</a>
-                        </p>
-                    </div>
-                </div>
-                <figure class="media-right">
-                    <p class="image is-64x64">
-                        <img src={% if tweet|get_obj_attr:"sentimen" == "positif" %} "{% static 'svg/mood-happy-outline.svg' %}" class="filter-green"
-                            {% elif tweet|get_obj_attr:"sentimen" == "netral" %} "{% static 'svg/mood-neutral-outline.svg' %}"
-                            {% else %} "{% static 'svg/mood-sad-outline.svg' %}" class="filter-red" {% endif %} alt="Sentiment">
-                    </p>
-                </figure>
+            <figure class="media-right">
+                <p class="image is-64x64">
+                    <img src={% if tweet|get_obj_attr:"sentimen" == "positif" %} "{% static 'svg/mood-happy-outline.svg' %}"
+                        class="filter-green"
+                        {% elif tweet|get_obj_attr:"sentimen" == "netral" %} "{% static 'svg/mood-neutral-outline.svg' %}"
+                        {% else %} "{% static 'svg/mood-sad-outline.svg' %}" class="filter-red" {% endif %}
+                        alt="Sentiment">
+                </p>
+            </figure>
 
-            </article>
-            </a>
-            {% endfor%}
-        </div>
+        </article>
+        </a>
+        {% endfor%}
+    </div>
     </div>
 
     <footer class="footer" style="position: fixed; bottom: 0px; width: 100%;">

@@ -84,5 +84,20 @@ def results(request):
     api = tweepyAuth() #Authentifikasi terlebih dahulu
     result = [status._json for status in tweepy.Cursor(api.search, q=keyword + '-filter:retweets', lang="id").items(tweet)] #Bentuk hasilnya list of dictionary
     hasil = getSentiment(result) #gunakan element yang diperlukan saja
+    positif = 0
+    netral = 0
+    negatif = 0
+    for item in hasil:
+        if (item["sentimen"] == "positif"):
+            positif += 1
+        elif (item["sentimen"] == "netral"):
+            netral += 1
+        else:
+            negatif += 1
+    PersenPositif = positif * 100 / tweet
+    PersenNetral = netral * 100 / tweet
+    PersenNegatif = negatif * 100 / tweet
 
-    return render(request, 'hasil.html', {'tweet' : tweet, 'keyword' : keyword, 'hasil': hasil})
+    return render(request, 'hasil.html', {'tweet' : tweet, 'keyword' : keyword, 'hasil': hasil, 'positif': positif, 
+                                          'negatif': negatif, 'netral': netral, 'PersenPositif': PersenPositif, 'PersenNetral': PersenNetral,
+                                          'PersenNegatif': PersenNegatif})
