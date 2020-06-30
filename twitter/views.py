@@ -87,17 +87,24 @@ def results(request):
     positif = 0
     netral = 0
     negatif = 0
+    counter = 0
     for item in hasil:
+        counter += 1
         if (item["sentimen"] == "positif"):
             positif += 1
         elif (item["sentimen"] == "netral"):
             netral += 1
         else:
             negatif += 1
-    PersenPositif = positif * 100 / tweet
-    PersenNetral = netral * 100 / tweet
-    PersenNegatif = negatif * 100 / tweet
+    if counter > 0:
+        PersenPositif = round(positif * 100 / counter, 2)
+        PersenNetral = round(netral * 100 / counter, 2)
+        PersenNegatif = round(negatif * 100 / counter, 2)
+    else:
+        PersenPositif = 0
+        PersenNegatif = 0
+        PersenNetral = 0
 
     return render(request, 'hasil.html', {'tweet' : tweet, 'keyword' : keyword, 'hasil': hasil, 'positif': positif, 
                                           'negatif': negatif, 'netral': netral, 'PersenPositif': PersenPositif, 'PersenNetral': PersenNetral,
-                                          'PersenNegatif': PersenNegatif})
+                                          'PersenNegatif': PersenNegatif, 'counter': counter})

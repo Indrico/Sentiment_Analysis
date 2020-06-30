@@ -98,6 +98,7 @@ berjenis,1
 berjuang,1
 berkapasitas besar,1
 berkat,1
+berkati,1
 berkeinginan,1
 berkelakuan baik,1
 berkelanjutan,1
@@ -155,11 +156,10 @@ bisa diterapkan,1
 bonus,1
 boros,1
 brilian,1
-cahaya,1
-cahaya redup,1
 cakap,1
 cantik,1
 cashbacks,1
+hbd,1
 cekatan,1
 cemas,1
 cemerlang,1
@@ -197,6 +197,7 @@ dianggap baik,1
 dibaca,1
 dibebaskan,1
 diberikan,1
+diberkati,1
 dibersihkan,1
 dibuat dengan baik,1
 dicapai,1
@@ -238,7 +239,7 @@ ditingkatkan,1
 diverifikasi,1
 dorongan,1
 duanya,1
-Dukung,1
+dukung,1
 dukungan,1
 durian runtuh,1
 edukatif,1
@@ -295,6 +296,7 @@ halus,1
 handal,1
 handier,1
 hangat,1
+happy birthday,1
 harga diri,1
 harga rendah,1
 harmoni,1
@@ -526,7 +528,6 @@ lebih disukai,1
 lebih hangat,1
 lebih kencang,1
 lebih keras,1
-Lebih memilih,1
 lebih memilih,1
 lebih murah,1
 lebih suka,1
@@ -610,6 +611,7 @@ memperbaiki,1
 memperbaiki akhlak,1
 mempercantik,1
 mempercayakan,1
+percayalah, 1
 memperjelas,1
 memperkaya,1
 memperkuat,1
@@ -672,6 +674,7 @@ mengejutkan,1
 mengerti,1
 mengesahkan,1
 mengesankan,1
+mengasihi,1
 menggairahkan,1
 menggelenyar,1
 menggelikan,1
@@ -711,6 +714,8 @@ menitipkan,1
 menjamin,1
 menjanjikan,1
 menonjol,1
+nonjokin, -1
+noob, -1
 mentereng,1
 menunjukkan gejala,1
 menurut hak,1
@@ -839,6 +844,8 @@ peningkatan,1
 penipu,1
 penjualan terbaik,1
 penolong,1
+penularan meningkat, -1
+penularan menurun, 1
 penting,1
 penuh,1
 penuh gaya,1
@@ -878,6 +885,7 @@ personalisasi,1
 pertama di kelas,1
 pertumbuhan tercepat,1
 pesona,1
+performa kuat,1
 petualang,1
 piala,1
 pikiran-bertiup,1
@@ -936,18 +944,17 @@ sabar,1
 sah,1
 saleh,1
 salut,1
-sangat,1
-sangat baik,1
-sangat berharga,1
-sangat indah,1
-sangat memuaskan,1
-sangat menarik,1
-sangat menyayangi,1
-sangat mudah,1
-sangat penting,1
-sangat rajin,1
-sangat sopan,1
-sangat tepat,1
+baik,1
+berharga,1
+indah,1
+memuaskan,1
+menarik,1
+menyayangi,1
+mudah,1
+penting,1
+rajin,1
+sopan,1
+tepat,1
 sanjungan,1
 sarankan,1
 sayang,1
@@ -962,7 +969,6 @@ segera,1
 sehat,1
 seimbang,1
 seksi,1
-Selamat,1
 selamat,1
 selayaknya,1
 selektif,1
@@ -1152,7 +1158,7 @@ tidak egois,1
 tidak ternilai,1
 tipis,1
 tokoh,1
-TOP,1
+top,1
 trendi,1
 tulang punggung,1
 tulus,1
@@ -1174,9 +1180,7 @@ wahyu,1
 warna-warni,1
 waspada,1
 whooa,1
-Whooooa,1
-Wow,1
-WOW,1
+wow,1
 yakin,1
 yay,1
 yeah,1
@@ -1193,7 +1197,7 @@ agresi,-1
 agresif,-1
 agresor,-1
 aib,-1
-air terjun,-1
+ihsg terjun bebas, -1
 akurat,-1
 alarm,-1
 alasan,-1
@@ -1213,7 +1217,12 @@ anak nakal,-1
 anak yatim,-1
 anarki,-1
 anarkis,-1
+akibat, -1
+mengakibatkan, -1
+ngak aneh,0
 anarkisme,-1
+narkoba,-1
+ancam,-1
 ancaman,-1
 aneh,-1
 aneh lagi,-1
@@ -1226,7 +1235,7 @@ anomali,-1
 antagonis,-1
 antagonisme,-1
 antek,-1
-anti-,-1
+anti,-1
 anti-Amerika,-1
 anti-Israel,-1
 anti-kita,-1
@@ -1355,9 +1364,7 @@ berkejut,-1
 berkenan,-1
 berkeping-keping,-1
 berkeras pendirian,-1
-berkeringat,-1
 berkerut,-1
-berkhayal,-1
 berkilat,-1
 berkilau,-1
 berkolusi,-1
@@ -1365,13 +1372,11 @@ berkonflik,-1
 berkubang,-1
 berkurang,-1
 berlangganan,-1
-berlebihan,-1
 berlemak,-1
 berlengah-lengah,-1
 berlepotan,-1
 berliku-liku,-1
 berlumpur,-1
-bermain berlebih-lebihan,-1
 bermasalah,-1
 berminyak,-1
 bermoral,-1
@@ -1544,8 +1549,10 @@ dikaburkan,-1
 dikenakan,-1
 dikorbankan,-1
 diktator,-1
+dilarang,-1
 diktatoris,-1
 dilapisi gula,-1
+kriminal,-1
 dilecehkan,-1
 dilema,-1
 dilenyapkan,-1
@@ -1705,7 +1712,6 @@ hedon,-1
 hedonistik,-1
 hegemoni,-1
 hegemonisme,-1
-hemat,-1
 hidung belang,-1
 hina,-1
 hingar-bingar,-1
@@ -1720,11 +1726,15 @@ hukuman setimpal,-1
 hutang,-1
 iblis,-1
 idiot,-1
+selamat ulang,1
+panjang umur,1
+ganteng,1
+maju terus pantang mundur,1
 igauan,-1
 ih,-1
 ikut campur,-1
 ilegal,-1
-Iluminati,-1
+iluminati,-1
 ilusi,-1
 imajiner,-1
 imperialis,-1
@@ -1845,6 +1855,7 @@ kecemasan,-1
 kecemburuan,-1
 kecenderungan,-1
 kecenderungan untuk menurun,-1
+menular, -1
 kecerobohan,-1
 kecewa,-1
 kecil,-1
@@ -1986,6 +1997,8 @@ kerusuhan,-1
 kerut,-1
 keruwetan,-1
 kesal,-1
+say no to drug,1
+anti narkoba,1
 kesalahan,-1
 kesalahan besar,-1
 kesalahan hitung,-1
@@ -2108,6 +2121,8 @@ kontroversial,-1
 konyol,-1
 korban,-1
 korban kecelakaan,-1
+korban jiwa, -1
+
 korosi,-1
 korosif,-1
 korup,-1
@@ -2160,10 +2175,9 @@ larut,-1
 latency,-1
 lawan,-1
 lebam,-1
-lebih buruk,-1
-lebih keras,-1
-lebih mahal,-1
-lebihan,-1
+buruk,-1
+keras,-1
+mahal,-1
 lecet,-1
 ledakan,-1
 lekat,-1
@@ -2253,10 +2267,12 @@ melarang,-1
 melarikan diri,-1
 melawan hukum,-1
 melayu,-1
-melebih-lebihkan,-1
 melecehkan,-1
+ngadu domba, -1
 meledak,-1
 melelahkan,-1
+rupiah melemah,-1
+melemah,-1
 melemahkan,-1
 melenceng,-1
 melengking,-1
@@ -2363,6 +2379,7 @@ memperberat,-1
 memperbudak,-1
 memperdaya,-1
 memperdayakan,-1
+memperingati,1
 memperingatkan,-1
 memperkosa,-1
 memperlambat,-1
@@ -2428,6 +2445,7 @@ mendatangkan,-1
 mendeklamasikan,-1
 menderita,-1
 menderita khayalan,-1
+tangkap, -1
 menderita sekali,-1
 mendesak,-1
 mendesis,-1
@@ -2513,6 +2531,7 @@ menggigit,-1
 menggila,-1
 menggiling,-1
 menggoda,-1
+goblok,-1
 menggoyang,-1
 menggugat,-1
 menggugurkan,-1
@@ -2535,6 +2554,7 @@ menghinakan,-1
 menghindari,-1
 menghujat,-1
 menghukum,-1
+bego,-1
 menghukum sebelum memeriksa,-1
 mengigau,-1
 mengikis,-1
@@ -2599,6 +2619,7 @@ menolak,-1
 menonjol,-1
 mentah,-1
 menuduh,-1
+bangsat,-1
 menumbangkan,-1
 menumpahkan,-1
 menunda,-1
@@ -2683,6 +2704,7 @@ meretas,-1
 merinding,-1
 meringis,-1
 merobek,-1
+meroket,1
 merokok,-1
 merongrong,-1
 merosot,-1
@@ -2714,7 +2736,6 @@ mungkir,-1
 muntah,-1
 muntahan,-1
 muntahan kebencian,-1
-murah,-1
 murahan,-1
 muram,-1
 murka,-1
@@ -2794,7 +2815,6 @@ pandangan yg menghinakan,-1
 panggilan,-1
 panggilan dari pengadilan,-1
 panik,-1
-panjang,-1
 paradoks,-1
 paradoksal,-1
 parah,-1
@@ -2898,6 +2918,7 @@ pengaduan,-1
 pengakuan,-1
 pengamuk,-1
 penganggur,-1
+pengangguran,-1
 penganiaya,-1
 penganiayaan,-1
 pengap,-1
@@ -2917,13 +2938,11 @@ penghinaan,-1
 penghindaran,-1
 penghujatan,-1
 penghukuman,-1
-pengingatan,-1
 pengingkaran,-1
 pengiring jenazah,-1
 pengkhianat,-1
 pengkhianatan,-1
 pengkritik,-1
-pengobrol,-1
 pengotor,-1
 pengrusakan,-1
 pengumpatan,-1
@@ -3015,7 +3034,7 @@ pesta,-1
 pesta besar,-1
 pesuruh,-1
 petualangan,-1
-PHK,-1
+phk,-1
 picik,-1
 picketed,-1
 pidana,-1
@@ -3110,6 +3129,9 @@ rusak,-1
 rusuh,-1
 sabar,-1
 sabotase,-1
+saham naik,1
+saham turun,-1
+saham gorengan, -1
 sakit,-1
 sakit dirancang,-1
 sakit hati,-1
@@ -3124,7 +3146,6 @@ sakit-penggunaan,-1
 sakitan,-1
 sakitnya tuh disini,-1
 salah,-1
-Salah,-1
 salah baca,-1
 salah hitung,-1
 salah informasi,-1
@@ -3147,13 +3168,11 @@ sambilan,-1
 sampah,-1
 sandal bakiak,-1
 sandera,-1
-sangat,-1
-sangat efektif,-1
-sangat jahat,-1
-sangat lapar,-1
-sangat marah,-1
-sangat menakjubkan,-1
-sangat sedikit,-1
+jahat,-1
+lapar,-1
+marah,-1
+menakjubkan,-1
+sedikit,-1
 sanggahan,-1
 sarkasme,-1
 sarkastik,-1
@@ -3251,6 +3270,7 @@ tahi,-1
 tai,-1
 tajam,-1
 taji,-1
+berguguran,-1
 tak ada artinya,-1
 tak bahagia,-1
 tak baik,-1
@@ -3356,6 +3376,8 @@ terburu nafsu,-1
 terburuk,-1
 tercela,-1
 tercemar,-1
+terpapar,-1
+cluster baru virus,-1
 terdefinisi,-1
 terdelusi,-1
 terduga,-1
@@ -3530,6 +3552,7 @@ timpang,-1
 tindak pencegahan,-1
 tindakan ekstrimis,-1
 tindakan merugikan,-1
+kadrun,-1
 tindakan yg bodoh,-1
 tinggi harga-,-1
 tinggi hati,-1
@@ -3573,7 +3596,6 @@ usang,-1
 usil,-1
 utuh,-1
 vagina,-1
-virus,-1
 volatil,-1
 vulgar,-1
 wabah,-1
@@ -3581,5 +3603,4 @@ waria,-1
 was-was,-1
 waspada,-1
 wastafel,-1
-ya silahkan saja,-1
-Yahudi,-1
+yahudi,-1

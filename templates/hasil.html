@@ -87,6 +87,9 @@
         </div>
     </form>
     <div class="block" style="margin-top: 5%; margin-bottom: 50px;">
+        {% if counter == 0%}
+        <p>Tweet Tidak ditemukan</p>
+        {% endif %}
         {% for tweet in hasil %}
         <article class="media">
             <figure class="media-left">
