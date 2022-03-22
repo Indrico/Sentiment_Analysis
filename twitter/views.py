@@ -10,8 +10,8 @@ from sklearn import svm
 import pickle
 
 def tweepyAuth():
-    auth = tweepy.OAuthHandler("sGVoIBh4jNQXOKyeQfoIhFf8x", "VF4DPLQ4ltkUnisGEYTGZSyTcnmYOqSRWnbDcqEKigKUWFGMV3")
-    auth.set_access_token("299945902-W7SGzGPNK4H1Qy0ggnAdvVYULzd5m4UrHMoIIV7U", "3q3AghIcAsshpoTvL5xSvIfmMIozoZfyDrHm1yoZafwqr")
+    auth = tweepy.OAuthHandler("uocp4BRzZUTI0yDvPY4brdPwr", "jRi0VrWY4rw8HmsF2jfYvLmeu5vFturzBddJEdgw4v3lz1d03C")
+    auth.set_access_token("299945902-hl6EqqNvrdlFm0cdYB1jXKzkQHNVdFKoNwbZLblc", "QMGKAL4TvGdRO1BRuZYdrcWpDeJUBCfYJE4spzFjT11ll")
     api = tweepy.API(auth)
     return api
 
